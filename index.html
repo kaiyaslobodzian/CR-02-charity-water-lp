@@ -3,45 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Proxima Nova Charity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Proxima Nova', Avenir, sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #8BD1CB,#2E9DF7, #4FCB53);
+            color: white;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Keyframes for the pulsing animation */
+        @keyframes flash {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+  
+
+        /* Navigation Bar */
+        .nav-bar {
+            background-color: white;
+            color: #0d1a3b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar .logo-container {
+            display: flex;
+            align-items: center;
+           
+        }
+
+        .nav-bar .logo {
+            width: 200px;
+            height: auto;
+        }
+
+        .logo-text {
+            color: #0d1a3b;
+            margin-left: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: #0d1a3b;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #159A48;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Main Header Section (the original header) */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .main-header h1 {
+            font-size: 2.5rem;
+            max-width: 350px;
+            text-align: left;
+        }
+
+        .main-header p {
+            font-size: 1.2rem;
+            max-width: 400px;
+            text-align: right;
+        }
+
+        /* hero image */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            align-items: center;
+            
+        }
+
+        .main-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .center-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .charity-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .donate-button {
+            background-color: #ff914d;
+            color: #0d1a3b;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            animation: flash 2s infinite alternate;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .donate-button:hover {
+            background-color: #e67d3d;
+        }
+
+        .water-drop-icon {
+            fill: #0d1a3b;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Communities We Reach Section */
+        .communities-section {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .communities-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .communities-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Stats Text */
+        .stats-text {
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Back to top button */
+        .back-to-top-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff914d;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top-btn:hover {
+            background-color: #e67d3d;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .main-header h1, .main-header p {
+                text-align: center;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content > div {
+                order: -1;
+            }
+
+            .center-column {
+                order: 0;
+            }
+
+            .right-images {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
-
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
-
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="logo-container">
+                 <img src="img/cw_logo-2.png" alt="Clarity Water Logo" class="logo">
         </div>
-    </section>
+        <div class="nav-links">
+            <a href="#">Donate</a>
+            <a href="#">Communities We Reach</a>
+        </div>
+    </div>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+    <div class="container">
+        <!-- Main Header Section -->
+        <div class="main-header">
+            <h1>Your Gift, Their Water, Our Future</h1>
+            <p>Every student gift creates ripple effects—clean water, real change.</p>
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="main-content">
+            <!-- Left Image -->
+            <div>
+                <img src="img/tree.jpg" alt="People sitting under a tree with water jugs.">
+            </div>
+
+            <!-- Center Column -->
+            <div class="center-column">
+                <img src="img/womenwithwater.jpg" alt="womenwithwater>
+                <p class="charity-text">Charity: water brings you closer to real stories of transformation, where clean water means time in school, stronger families, and thriving communities. Your donation is more than water—it’s the beginning of a brighter future.</p>
+                <a href="#" class="donate-button">
+                    <svg class="water-drop-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-1.39 0-2.5-1.11-2.5-2.5s1.11-2.5 2.5-2.5 2.5 1.11 2.5 2.5-1.11 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span>Donate</span>
+                </a>
+                <p class="stats-text">We have helped over 17 million people gain access to clean water!</p>
+            </div>
+
+            <!-- Right Images -->
+            <div class="right-images">
+                <img src="img/Childwithwater.jpg" alt="A child drinking water.">
+                <img src="img/teacher.jpg" alt="Students in a classroom.">
+            </div>
+        </div>
+
+        <!-- Communities We Reach Section -->
+        <div class="communities-section">
+            <h2>Communities We Reach</h2>
+            <p>We’re bringing sustainable clean water solutions to communities across the globe, focusing on local needs, long-term impact, and community empowerment.</p>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <button id="backToTopBtn" class="back-to-top-btn">↑</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.getElementById('backToTopBtn');
+
+            const toggleBackToTopButton = () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'block';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            };
+
+            const scrollToTop = () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            window.addEventListener('scroll', toggleBackToTopButton);
+            backToTopBtn.addEventListener('click', scrollToTop);
+        });
+    </script>
 </body>
 </html>
+
